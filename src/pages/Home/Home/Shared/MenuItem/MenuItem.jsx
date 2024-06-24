@@ -11,7 +11,7 @@ const MenuItem = ({ item }) => {
         <h2 className="uppercase">{item?.name}--------</h2>
         <p>{item?.recipe}</p>
       </div>
-      <p className="text-yellow-500 ">${item?.price}</p>
+      <p className="text-yellow-500">${item?.price}</p>
     </div>
   );
 };
