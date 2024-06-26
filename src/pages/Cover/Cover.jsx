@@ -6,7 +6,7 @@ const Cover = ({ img, title }) => {
       blur={{ min: -50, max: 50 }}
       bgImage={img}
       bgImageAlt="the menu"
-      strength={-400}
+      strength={-200}
     >
       {/* Blur transition from min to max */}
       <div className="hero h-[700px]">

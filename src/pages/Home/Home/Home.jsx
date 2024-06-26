@@ -1,10 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 import Testimonials from "../Testimonials/Testimonials";
 import Category from "./Category/Category";
-import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../Components/SectionTaitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
 import "./Featured.css";
@@ -21,9 +22,12 @@ const Featured = () => {
             Remember, our strength lies in unity, and our future is bright.
             Thank you for your dedication and passion."
           </p>
-          <button className="btn btn-outline border-0 border-b-4 mt-4 text-white font-bold">
+          <Link
+            to="/orderFood"
+            className="btn btn-outline border-0 border-b-4 mt-4 text-white font-bold"
+          >
             Order Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>
