@@ -6,7 +6,8 @@ import NavBar from "../pages/Home/Home/Shared/NavBar/NavBar";
 const MainLayout = () => {
   // conditional nav and footer in login page
   const location = useLocation();
-  const noHeaderFooter = location.pathname.includes("login");
+  const noHeaderFooter =
+    location.pathname.includes("login") || location.pathname.includes("signUp");
   return (
     <div>
       {noHeaderFooter || <NavBar />}
