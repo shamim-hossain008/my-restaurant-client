@@ -23,7 +23,7 @@ const Featured = () => {
             Thank you for your dedication and passion."
           </p>
           <Link
-            to="/orderFood"
+            to="/menu"
             className="btn btn-outline border-0 border-b-4 mt-4 text-white font-bold"
           >
             Order Now
