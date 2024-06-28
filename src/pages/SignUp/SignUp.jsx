@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import logoImg from "../../../public/logo.png";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -9,16 +10,32 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        })
+        .catch((error) => console.log(error));
     });
   };
 
@@ -95,6 +112,18 @@ const SignUp = () => {
               {/* errors will return when field validation fails  */}
               {errors.email && (
                 <span className="text-red-600">Email is required</span>
+              )}
+            </div>
+            <div className="relative flex items-center mt-6">
+              <input
+                type="text"
+                {...register("photoURL", { required: true })}
+                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                placeholder="Photo URL"
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.photoURL && (
+                <span className="text-red-600">Photo URL is required</span>
               )}
             </div>
 
