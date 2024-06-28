@@ -1,21 +1,32 @@
+import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import logoImg from "../../../public/logo.png";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const SignUp = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
+  const { createUser } = useContext(AuthContext);
+
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    });
   };
 
   return (
     <div>
+      <Helmet>
+        <title>Restaurant | Sign Up</title>
+      </Helmet>
       <section className="bg-white dark:bg-gray-100">
         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
           <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
@@ -111,6 +122,7 @@ const SignUp = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
+                  pattern: /[A-Za-z]/,
                 })}
                 name="password"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -120,12 +132,28 @@ const SignUp = () => {
               {errors.password?.type === "required" && (
                 <p className="text-red-600">Password is required</p>
               )}
+              {/* errors will return when field validation fails  */}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">Password must be 6 characters</p>
+              )}
+              {/* errors will return when field validation fails  */}
+              {errors.password?.type === "maxLength" && (
+                <p className="text-red-600">Password must be 20 characters</p>
+              )}
+              {/* errors will return when field validation fails  */}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-600">
+                  Password must have one uppercase, one lower case
+                </p>
+              )}
             </div>
 
             <div className="mt-6">
-              <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Sign Up
-              </button>
+              <input
+                type="submit"
+                value="Sign Up"
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+              />
 
               <div className="mt-6 text-center ">
                 <Link
