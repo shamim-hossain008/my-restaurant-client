@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
@@ -11,11 +12,13 @@ const FoodCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
 
-  const handleAddToCart = (food) => {
+  const handleAddToCart = () => {
     if (user && user.email) {
       // send cart i to the database
-      console.log(user.email, food, "from food card");
+      // console.log(user.email, food, "from food card");
+
       const cartItem = {
         menuId: _id,
         email: user.email,
@@ -23,10 +26,13 @@ const FoodCard = ({ item }) => {
         image,
         price,
       };
+      // send data to server
       axiosSecure.post("/carts", cartItem).then((res) => {
         if (res.data.insertedId) {
           toast.success(`${name} Add to cart Successful`);
         }
+        // refetch the cart to update the cart items counts
+        refetch();
       });
     } else {
       Swal.fire({
@@ -58,7 +64,7 @@ const FoodCard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions">
           <button
-            onClick={() => handleAddToCart(item)}
+            onClick={handleAddToCart}
             className="btn btn-outline border-0 border-b-4 text-yellow-700 uppercase bg-gray-200 "
           >
             Add To Cart
