@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import logoImg from "../../../public/logo.png";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -33,7 +34,7 @@ const SignUp = () => {
           };
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
-              console.log('user added to the database')
+              console.log("user added to the database");
               reset();
               Swal.fire({
                 position: "top-center",
@@ -192,9 +193,9 @@ const SignUp = () => {
               <input
                 type="submit"
                 value="Sign Up"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
               />
-
+              <SocialLogin />
               <div className="mt-6 text-center ">
                 <Link
                   to="/login"
