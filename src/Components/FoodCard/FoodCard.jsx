@@ -67,7 +67,7 @@ const FoodCard = ({ item }) => {
             onClick={handleAddToCart}
             className="btn btn-outline border-0 border-b-4 text-yellow-700 uppercase bg-gray-200 "
           >
-            Add To Cart
+            Add To Cart 
           </button>
         </div>
       </div>
