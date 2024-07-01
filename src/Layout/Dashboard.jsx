@@ -2,6 +2,7 @@ import { BiFoodMenu } from "react-icons/bi";
 import {
   FaAd,
   FaCalendar,
+  FaEnvelope,
   FaHome,
   FaList,
   FaShoppingCart,
@@ -11,6 +12,8 @@ import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
+  // get isAdmin value from the database
+  const isAdmin = true;
   return (
     <div className="flex">
       {/* Dashboard side bar */}
@@ -47,6 +50,7 @@ const Dashboard = () => {
               My Bookings
             </NavLink>
           </li>
+          {/*** Shared nav links ***/}
           <div className="divider"></div>
           <li>
             <NavLink to="/">
@@ -58,6 +62,12 @@ const Dashboard = () => {
             <NavLink to="/orderFood/salad">
               <BiFoodMenu />
               Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/orderFood/contact">
+              <FaEnvelope />
+              Contact
             </NavLink>
           </li>
         </ul>
