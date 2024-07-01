@@ -32,6 +32,9 @@ const Cart = () => {
       }
     });
   };
+
+
+
   return (
     <div>
       <div className="flex justify-evenly mb-8">
@@ -72,10 +75,7 @@ const Cart = () => {
                 <td>{item.name}</td>
                 <td>${item.price}</td>
                 <th>
-                  <button
-                    onClick={() => handleDelete(item._id)}
-                    className="btn btn-ghost btn-xl"
-                  >
+                  <button onClick={() => handleDelete(item._id)}>
                     <FaTrashAlt className=" transition-colors duration-200   hover:text-red-500 "></FaTrashAlt>
                   </button>
                 </th>
