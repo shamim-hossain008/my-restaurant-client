@@ -18,6 +18,8 @@ const Dashboard = () => {
   const [cart] = useCart();
   // get isAdmin value from the database
   const [isAdmin] = useAdmin();
+
+  console.log(isAdmin);
   return (
     <div className="flex">
       {/* Dashboard side bar */}
@@ -26,7 +28,6 @@ const Dashboard = () => {
         <ul className="menu">
           {isAdmin ? (
             <>
-             
               <li>
                 <NavLink to="/dashboard/adminHome">
                   <FaHome></FaHome>

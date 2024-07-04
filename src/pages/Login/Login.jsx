@@ -7,8 +7,8 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProviders";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -30,7 +30,7 @@ const Login = () => {
 
     signIn(email, password).then((result) => {
       const user = result.user;
-      
+
       Swal.fire({
         title: "User Login Successful",
         showClass: {
@@ -132,7 +132,7 @@ const Login = () => {
                   value="Login"
                 />
               </div>
-              <SocialLogin/>
+              <SocialLogin />
             </form>
             <p className="p-4 text-center">
               <small>New Here</small>

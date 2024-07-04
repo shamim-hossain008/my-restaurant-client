@@ -40,7 +40,7 @@ const NavBar = () => {
       </li>
       {user ? (
         <>
-          {/* <span>{user?.displayName}</span> */}
+          <span>{user?.displayName}</span>
           <button onClick={handleLogOut}>Log Out</button>
         </>
       ) : (

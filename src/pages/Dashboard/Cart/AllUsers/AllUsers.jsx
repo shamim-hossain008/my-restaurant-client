@@ -25,6 +25,7 @@ const AllUsers = () => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
+        refetch();
         Swal.fire({
           position: "top-center",
           icon: "success",
