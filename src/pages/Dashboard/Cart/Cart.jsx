@@ -1,4 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
@@ -33,14 +34,20 @@ const Cart = () => {
     });
   };
 
-
-
   return (
     <div>
       <div className="flex justify-evenly mb-8">
         <h2 className="text-4xl font-bold p-2">Total Orders: {cart.length}</h2>
         <h2 className="text-4xl font-bold p-2">Total Price: {totalPrice}</h2>
-        <button className="btn bg-orange-300">Pay</button>
+        {cart.length ? (
+          <Link to="/dashboard/payment">
+            <button className="btn bg-orange-300">Pay</button>
+          </Link>
+        ) : (
+          <button disabled className="btn bg-orange-300">
+            Pay
+          </button>
+        )}
       </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
