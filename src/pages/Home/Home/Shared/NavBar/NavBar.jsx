@@ -27,7 +27,7 @@ const NavBar = () => {
         <li>
           <Link to="/dashboard/adminHome">Dashboard</Link>
         </li>
-      )} :
+      )} 
       {user && !isAdmin && (
         <li>
           <Link to="/dashboard/userAdmin">Dashboard</Link>
